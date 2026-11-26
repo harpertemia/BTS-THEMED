@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tone.js for dreamy synthesized music-box chimes without external sound URLs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
     <script>
         tailwind.config = {
@@ -153,14 +155,14 @@
         </div>
     </div>
 
-    <!-- Top Floating Controls (YouTube Piano Cover Toggle & Host Customizer Button) -->
+    <!-- Top Floating Controls (Music-Box Chime Toggle & Host Customizer Button) -->
     <div class="fixed top-3 right-3 z-40 flex items-center gap-2">
-        <button id="music-toggle-btn" type="button" onclick="togglePianoCover()" aria-label="Toggle YouTube Piano Cover" class="p-2.5 rounded-full bg-army-deep/90 backdrop-blur-md border border-army-lilac/40 shadow-lg text-army-lilac hover:bg-army-royal/40 transition active:scale-95 flex items-center gap-1.5 text-xs font-semibold">
-            <span id="music-icon" class="text-base">🎹</span>
-            <span class="hidden sm:inline" id="music-label">Piano Off</span>
+        <button id="music-toggle-btn" onclick="toggleCosmicAudio()" aria-label="Toggle Dreamy Music Chimes" class="p-2.5 rounded-full bg-army-deep/90 backdrop-blur-md border border-army-lilac/40 shadow-lg text-army-lilac hover:bg-army-royal/40 transition active:scale-95 flex items-center gap-1.5 text-xs font-semibold">
+            <span id="music-icon" class="text-base">🔇</span>
+            <span class="hidden sm:inline" id="music-label">Synth Off</span>
         </button>
 
-        <button type="button" onclick="openEditModal()" class="px-3.5 py-2.5 rounded-full holo-gradient text-white shadow-lg hover:opacity-95 transition active:scale-95 flex items-center gap-1.5 text-xs font-bold tracking-wide border border-white/30">
+        <button onclick="openEditModal()" class="px-3.5 py-2.5 rounded-full holo-gradient text-white shadow-lg hover:opacity-95 transition active:scale-95 flex items-center gap-1.5 text-xs font-bold tracking-wide border border-white/30">
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
             <span>Customize Invite</span>
         </button>
@@ -220,7 +222,7 @@
             <div class="ticket-divider my-6"></div>
 
             <!-- Glowing Holographic Seal Button -->
-            <button type="button" onclick="unlockInvitation()" class="glow-portal group relative inline-flex items-center justify-center px-7 py-4 rounded-2xl holo-gradient text-white font-bold text-sm tracking-wide transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer mx-auto border border-white/40 shadow-xl">
+            <button onclick="unlockInvitation()" class="glow-portal group relative inline-flex items-center justify-center px-7 py-4 rounded-2xl holo-gradient text-white font-bold text-sm tracking-wide transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer mx-auto border border-white/40 shadow-xl">
                 <span class="flex items-center gap-2.5">
                     <span class="text-lg group-hover:rotate-12 transition-transform">🎫</span>
                     <span>Tap to Unlock • Borahae 💜</span>
@@ -376,7 +378,7 @@
 
                     <!-- One-Tap Copy Address & Google Maps Buttons -->
                     <div class="grid grid-cols-2 gap-3 pt-2">
-                        <button type="button" onclick="copyVenueAddress()" class="py-3 px-3 rounded-2xl bg-army-deep hover:bg-army-royal/50 border border-army-lilac/40 text-army-mist font-semibold text-xs flex items-center justify-center gap-1.5 transition active:scale-95">
+                        <button onclick="copyVenueAddress()" class="py-3 px-3 rounded-2xl bg-army-deep hover:bg-army-royal/50 border border-army-lilac/40 text-army-mist font-semibold text-xs flex items-center justify-center gap-1.5 transition active:scale-95">
                             <span>📋</span>
                             <span>Copy Address</span>
                         </button>
@@ -490,35 +492,11 @@
                     </div>
 
                     <!-- Optional Gift / Bias Note Box -->
-                    <div class="bg-army-void/70 rounded-2xl p-4 border border-army-lilac/25 text-left flex items-start gap-3 mb-4">
+                    <div class="bg-army-void/70 rounded-2xl p-4 border border-army-lilac/25 text-left flex items-start gap-3">
                         <span class="text-xl mt-0.5">🎁</span>
                         <div class="text-xs leading-relaxed text-army-lilac/90">
                             <strong class="font-bold text-white block mb-0.5">Gift & Bias Note:</strong>
                             <span id="display-gift-note">Celebrating together is the best present! If you'd like to bring a little something, purple accessories, vinyls, or handwritten letters are always cherished.</span>
-                        </div>
-                    </div>
-
-                    <!-- YouTube Piano Cover Player -->
-                    <div id="music-player-box" class="bg-army-void/70 rounded-2xl p-4 border border-army-lilac/25 text-center">
-                        <button id="toggle-music-btn" type="button" onclick="togglePianoCover()" class="px-4 py-2.5 rounded-full holo-gradient text-white font-bold text-xs inline-flex items-center gap-2 shadow-md hover:opacity-95 transition active:scale-95 cursor-pointer">
-                            <span>🎹</span>
-                            <span>Play Piano Cover</span>
-                        </button>
-                        <p class="text-[10px] text-army-lilac/70 mt-2">
-                            Starts at 0:33 • Tap play inside the video if your browser blocks auto-sound
-                        </p>
-                        <div id="yt-wrapper" class="hidden mt-3 rounded-2xl overflow-hidden border border-army-lilac/30">
-                            <iframe
-                                id="yt-piano-frame"
-                                width="100%"
-                                height="200"
-                                src=""
-                                title="YouTube Piano Cover"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                                class="border-0 w-full block">
-                            </iframe>
                         </div>
                     </div>
                 </div>
@@ -630,7 +608,7 @@
                     <h3 class="font-display text-xl font-bold holo-text">✨ Customize Invitation</h3>
                     <p class="text-[11px] text-army-lilac/75">Edit details & export your ready-to-host HTML file</p>
                 </div>
-                <button type="button" onclick="closeEditModal()" class="w-8 h-8 rounded-full bg-army-deep text-army-lilac flex items-center justify-center font-bold hover:bg-army-borahae hover:text-white transition">✕</button>
+                <button onclick="closeEditModal()" class="w-8 h-8 rounded-full bg-army-deep text-army-lilac flex items-center justify-center font-bold hover:bg-army-borahae hover:text-white transition">✕</button>
             </div>
 
             <form id="edit-details-form" onsubmit="saveInvitationDetails(event)" class="space-y-3.5 text-sm">
@@ -705,7 +683,7 @@
     </div>
 
     <!-- ===================================================================== -->
-    <!-- INTERACTIVE LOGIC, GALAXY PARTICLE CANVAS, PIANO COVER & EXPORT ENGINE-->
+    <!-- INTERACTIVE LOGIC, GALAXY PARTICLE CANVAS, AUDIO & EXPORT ENGINE      -->
     <!-- ===================================================================== -->
     <script id="invitation-state-script">
         // Default configuration (gets updated automatically inside downloaded HTML exports)
@@ -792,54 +770,67 @@
         }
 
         // ---------------------------------------------------------------------
-        // 3. YOUTUBE PIANO COVER EMBED CONTROLLER
+        // 3. DREAMY SYNTHESIZED MUSIC-BOX CHIMES (Tone.js - Self-contained)
         // ---------------------------------------------------------------------
-        const PIANO_VIDEO_ID = "3oyvs1ZTZAU";
-        let isPianoPlaying = false;
+        let isAudioPlaying = false;
+        let cosmicLoop = null;
+        let cosmicSynth = null;
 
-        function updatePianoButtons(playing) {
-            const btn = document.getElementById("toggle-music-btn");
-            const topIcon = document.getElementById("music-icon");
-            const topLabel = document.getElementById("music-label");
+        async function initCosmicAudio() {
+            if (!cosmicSynth) {
+                await Tone.start();
+                const reverb = new Tone.Reverb({ decay: 4.5, wet: 0.55 }).toDestination();
+                cosmicSynth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: "triangle" },
+                    envelope: { attack: 0.04, decay: 0.9, sustain: 0.15, release: 2.0 },
+                    volume: -14
+                }).connect(reverb);
 
-            if (playing) {
-                if (btn) btn.innerHTML = '<span>⏸</span><span>Hide / Stop Piano Cover</span>';
-                if (topIcon) topIcon.textContent = "⏸";
-                if (topLabel) topLabel.textContent = "Piano On";
-            } else {
-                if (btn) btn.innerHTML = '<span>🎹</span><span>Play Piano Cover</span>';
-                if (topIcon) topIcon.textContent = "🎹";
-                if (topLabel) topLabel.textContent = "Piano Off";
+                // Dreamy starry music-box melody notes
+                const melody = ["E5", "B4", "G#5", "F#5", "E5", "B4", "C#5", "B4"];
+                let step = 0;
+                cosmicLoop = new Tone.Loop((time) => {
+                    cosmicSynth.triggerAttackRelease(melody[step % melody.length], "8n", time);
+                    step++;
+                }, "2n");
             }
         }
 
-        function playPianoCover() {
-            const iframe = document.getElementById("yt-piano-frame");
-            const wrapper = document.getElementById("yt-wrapper");
-            if (!iframe) return;
+        async function toggleCosmicAudio() {
+            try {
+                await initCosmicAudio();
+                const iconEl = document.getElementById("music-icon");
+                const labelEl = document.getElementById("music-label");
 
-            if (wrapper) wrapper.classList.remove("hidden");
-            iframe.src = `https://www.youtube.com/embed/${PIANO_VIDEO_ID}?autoplay=1&start=33&rel=0&playsinline=1`;
-            isPianoPlaying = true;
-            updatePianoButtons(true);
-            showToast("Loading piano cover (starts at 0:33)", "🎹");
+                if (!isAudioPlaying) {
+                    Tone.Transport.start();
+                    cosmicLoop.start(0);
+                    isAudioPlaying = true;
+                    iconEl.textContent = "🎶";
+                    if (labelEl) labelEl.textContent = "Synth On";
+                    showToast("Dreamy Magic Shop chimes playing", "🎵");
+                } else {
+                    cosmicLoop.stop();
+                    Tone.Transport.stop();
+                    isAudioPlaying = false;
+                    iconEl.textContent = "🔇";
+                    if (labelEl) labelEl.textContent = "Synth Off";
+                }
+            } catch (err) {
+                console.error("Audio error:", err);
+            }
         }
 
-        function stopPianoCover() {
-            const iframe = document.getElementById("yt-piano-frame");
-            const wrapper = document.getElementById("yt-wrapper");
-
-            if (iframe) iframe.src = "";
-            if (wrapper) wrapper.classList.add("hidden");
-            isPianoPlaying = false;
-            updatePianoButtons(false);
-        }
-
-        function togglePianoCover() {
-            if (isPianoPlaying) {
-                stopPianoCover();
-            } else {
-                playPianoCover();
+        async function playUnlockSparkle() {
+            try {
+                await initCosmicAudio();
+                const now = Tone.now();
+                cosmicSynth.triggerAttackRelease("E5", "8n", now);
+                cosmicSynth.triggerAttackRelease("G#5", "8n", now + 0.1);
+                cosmicSynth.triggerAttackRelease("B5", "8n", now + 0.2);
+                cosmicSynth.triggerAttackRelease("E6", "4n", now + 0.3);
+            } catch (e) {
+                // Ignore if blocked prior to interaction
             }
         }
 
@@ -849,7 +840,7 @@
         function unlockInvitation() {
             const gate = document.getElementById("welcome-gate");
             gate.classList.add("opened");
-            playPianoCover();
+            playUnlockSparkle();
             burstPurpleHearts();
         }
 
@@ -923,4 +914,330 @@
             document.getElementById("edit-time").value = invitationData.time;
             document.getElementById("edit-countdown-target").value = invitationData.countdownTarget;
             document.getElementById("edit-venue-name").value = invitationData.venueName;
-            document.getElementById("edit-venue-address").value = invitationData.venueAddress
+            document.getElementById("edit-venue-address").value = invitationData.venueAddress;
+            document.getElementById("edit-gift-note").value = invitationData.giftNote;
+
+            const modal = document.getElementById("edit-modal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        }
+
+        function closeEditModal() {
+            const modal = document.getElementById("edit-modal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+
+        // Photo Upload via FileReader
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                invitationData.photoDataUrl = e.target.result;
+                document.getElementById("celebrant-photo-img").src = invitationData.photoDataUrl;
+                try {
+                    localStorage.setItem(STORAGE_KEY_DETAILS, JSON.stringify(invitationData));
+                } catch (err) {
+                    console.warn("Image too large for localStorage, kept in session & ready for HTML export.");
+                }
+                showToast("Portrait updated! Ready to preview or download.", "📸");
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function saveInvitationDetails(event) {
+            event.preventDefault();
+            invitationData.celebrantName = document.getElementById("edit-celebrant-name").value.trim();
+            invitationData.milestone = document.getElementById("edit-milestone").value.trim();
+            invitationData.welcomeQuote = document.getElementById("edit-welcome-quote").value.trim();
+            invitationData.date = document.getElementById("edit-date").value.trim();
+            invitationData.time = document.getElementById("edit-time").value.trim();
+            invitationData.countdownTarget = document.getElementById("edit-countdown-target").value || invitationData.countdownTarget;
+            invitationData.venueName = document.getElementById("edit-venue-name").value.trim();
+            invitationData.venueAddress = document.getElementById("edit-venue-address").value.trim();
+            invitationData.giftNote = document.getElementById("edit-gift-note").value.trim();
+
+            try {
+                localStorage.setItem(STORAGE_KEY_DETAILS, JSON.stringify(invitationData));
+            } catch (err) {
+                console.warn("Could not persist details to localStorage:", err);
+            }
+
+            renderInvitationDetails();
+            closeEditModal();
+            showToast("Borahae invitation updated!", "💜");
+        }
+
+        // ---------------------------------------------------------------------
+        // 7. STANDALONE HTML EXPORT (Bakes custom edits into downloadable file)
+        // ---------------------------------------------------------------------
+        function downloadCustomHtml() {
+            // Sync current form inputs before exporting
+            invitationData.celebrantName = document.getElementById("edit-celebrant-name").value.trim() || invitationData.celebrantName;
+            invitationData.milestone = document.getElementById("edit-milestone").value.trim() || invitationData.milestone;
+            invitationData.welcomeQuote = document.getElementById("edit-welcome-quote").value.trim() || invitationData.welcomeQuote;
+            invitationData.date = document.getElementById("edit-date").value.trim() || invitationData.date;
+            invitationData.time = document.getElementById("edit-time").value.trim() || invitationData.time;
+            invitationData.countdownTarget = document.getElementById("edit-countdown-target").value || invitationData.countdownTarget;
+            invitationData.venueName = document.getElementById("edit-venue-name").value.trim() || invitationData.venueName;
+            invitationData.venueAddress = document.getElementById("edit-venue-address").value.trim() || invitationData.venueAddress;
+            invitationData.giftNote = document.getElementById("edit-gift-note").value.trim() || invitationData.giftNote;
+
+            renderInvitationDetails();
+
+            // Clone document and update the embedded INITIAL_INVITE_DATA script block
+            const clonedDoc = document.documentElement.cloneNode(true);
+            // Reset gate and modal states in the exported copy so guests see the cover gate first
+            const exportedGate = clonedDoc.querySelector("#welcome-gate");
+            if (exportedGate) exportedGate.classList.remove("opened");
+            const exportedModal = clonedDoc.querySelector("#edit-modal");
+            if (exportedModal) {
+                exportedModal.classList.add("hidden");
+                exportedModal.classList.remove("flex");
+            }
+
+            const stateScript = clonedDoc.querySelector("#invitation-state-script");
+            if (stateScript) {
+                stateScript.textContent = `\n        window.INITIAL_INVITE_DATA = ${JSON.stringify(invitationData, null, 4)};\n    `;
+            }
+
+            const finalHtml = "<!DOCTYPE html>\n" + clonedDoc.outerHTML;
+            const blob = new Blob([finalHtml], { type: "text/html;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "bts-invitation.html";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showToast("Downloaded bts-invitation.html! Ready to host.", "⬇️");
+        }
+
+        // ---------------------------------------------------------------------
+        // 8. COPY VENUE ADDRESS (execCommand fallback for iFrame safety)
+        // ---------------------------------------------------------------------
+        function copyVenueAddress() {
+            const fullAddress = `${invitationData.venueName}, ${invitationData.venueAddress}`;
+            const tempInput = document.createElement("textarea");
+            tempInput.value = fullAddress;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand("copy");
+                showToast("Venue address copied to clipboard!", "📍");
+            } catch (err) {
+                showToast("Could not copy address", "⚠️");
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // ---------------------------------------------------------------------
+        // 9. WORKING RSVP FORM & LIVE ARMY GUESTBOOK / SONG QUEUE
+        // ---------------------------------------------------------------------
+        function toggleGuestCountField(isAttending) {
+            const wrapper = document.getElementById("guest-count-wrapper");
+            wrapper.style.display = isAttending ? "block" : "none";
+        }
+
+        function renderGuestbook() {
+            const listEl = document.getElementById("guestbook-list");
+            const badgeEl = document.getElementById("rsvp-total-badge");
+
+            const totalAttending = rsvpEntries
+                .filter(entry => entry.attending === "Yes")
+                .reduce((sum, entry) => sum + Number(entry.guests), 0);
+
+            badgeEl.textContent = `${totalAttending} ARMY Attending`;
+
+            if (rsvpEntries.length === 0) {
+                listEl.innerHTML = `<p class="text-xs text-center text-army-lilac/65 py-4">No RSVPs yet. Be the first ARMY to sign the guestbook!</p>`;
+                return;
+            }
+
+            listEl.innerHTML = rsvpEntries.map(entry => {
+                const isYes = entry.attending === "Yes";
+                const statusBadge = isYes
+                    ? `<span class="px-2.5 py-0.5 rounded-full bg-army-borahae/40 border border-army-lilac/40 text-army-goldStar text-[10px] font-bold">Attending (${entry.guests})</span>`
+                    : `<span class="px-2.5 py-0.5 rounded-full bg-army-pinkGlow/25 border border-army-pinkGlow/40 text-army-pinkGlow text-[10px] font-bold">From Afar 🌙</span>`;
+
+                const songHtml = entry.song
+                    ? `<div class="inline-flex items-center gap-1.5 mt-2 px-2.5 py-1 rounded-xl bg-army-deep/90 border border-army-lilac/25 text-[11px] text-army-lilac">
+                         <span>🎵</span>
+                         <span>Track Request: <strong class="text-white">${escapeHtml(entry.song)}</strong></span>
+                       </div>`
+                    : "";
+
+                const wishHtml = entry.wish
+                    ? `<p class="font-serif italic text-sm text-army-mist/90 mt-1.5">"${escapeHtml(entry.wish)}"</p>`
+                    : "";
+
+                return `
+                    <div class="p-3.5 rounded-2xl bg-army-void/75 border border-army-lilac/25 shadow-sm">
+                        <div class="flex items-center justify-between gap-2">
+                            <p class="font-bold text-xs text-white">${escapeHtml(entry.name)}</p>
+                            ${statusBadge}
+                        </div>
+                        ${wishHtml}
+                        ${songHtml}
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function handleRsvpSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById("guest-name").value.trim();
+            const attending = document.querySelector('input[name="attending"]:checked').value;
+            const guests = attending === "Yes" ? parseInt(document.getElementById("guest-count").value, 10) : 0;
+            const song = document.getElementById("song-request").value.trim();
+            const wish = document.getElementById("guest-wish").value.trim();
+
+            if (!name) return;
+
+            rsvpEntries.unshift({
+                id: Date.now(),
+                name,
+                attending,
+                guests,
+                song,
+                wish
+            });
+
+            try {
+                localStorage.setItem(STORAGE_KEY_RSVPS, JSON.stringify(rsvpEntries));
+            } catch (err) {
+                console.warn("Could not save RSVP to localStorage:", err);
+            }
+
+            renderGuestbook();
+            document.getElementById("rsvp-form").reset();
+            toggleGuestCountField(true);
+            burstPurpleHearts();
+            showToast(`Borahae, ${name}! Your RSVP is locked in.`, "💜");
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement("div");
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // ---------------------------------------------------------------------
+        // 10. COSMIC STARDUST & PURPLE HEART CONFETTI CANVAS
+        // ---------------------------------------------------------------------
+        const canvas = document.getElementById("galaxy-canvas");
+        const ctx = canvas.getContext("2d");
+        let starParticles = [];
+        let heartParticles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class StarDust {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 2 + 0.6;
+                this.vx = (Math.random() - 0.5) * 0.35;
+                this.vy = -Math.random() * 0.35 - 0.1;
+                this.alpha = Math.random();
+                this.alphaDelta = (Math.random() * 0.02 + 0.008) * (Math.random() > 0.5 ? 1 : -1);
+                const palette = ["196, 181, 253", "244, 114, 182", "253, 230, 138", "139, 92, 246"];
+                this.color = palette[Math.floor(Math.random() * palette.length)];
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha += this.alphaDelta;
+                if (this.alpha >= 1 || this.alpha <= 0.1) this.alphaDelta *= -1;
+                if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) this.reset();
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${this.color}, ${Math.max(0, Math.min(1, this.alpha))})`;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = `rgba(${this.color}, 0.85)`;
+                ctx.fill();
+            }
+        }
+
+        class PurpleHeartBurst {
+            constructor() {
+                this.x = canvas.width / 2 + (Math.random() - 0.5) * 140;
+                this.y = canvas.height / 2 + (Math.random() - 0.5) * 100;
+                this.vx = (Math.random() - 0.5) * 5.5;
+                this.vy = -Math.random() * 4.5 - 1.5;
+                this.gravity = 0.08;
+                this.size = Math.random() * 14 + 12;
+                this.alpha = 1;
+                this.emoji = Math.random() > 0.25 ? "💜" : "✨";
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += this.gravity;
+                this.alpha -= 0.014;
+            }
+            draw() {
+                if (this.alpha <= 0) return;
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, this.alpha);
+                ctx.font = `${this.size}px sans-serif`;
+                ctx.fillText(this.emoji, this.x, this.y);
+                ctx.restore();
+            }
+        }
+
+        function initGalaxyCanvas() {
+            resizeCanvas();
+            starParticles = [];
+            for (let i = 0; i < 48; i++) {
+                starParticles.push(new StarDust());
+            }
+        }
+
+        function burstPurpleHearts() {
+            for (let i = 0; i < 26; i++) {
+                heartParticles.push(new PurpleHeartBurst());
+            }
+        }
+
+        function animateGalaxy() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            starParticles.forEach(star => {
+                star.update();
+                star.draw();
+            });
+
+            heartParticles = heartParticles.filter(h => h.alpha > 0);
+            heartParticles.forEach(heart => {
+                heart.update();
+                heart.draw();
+            });
+
+            requestAnimationFrame(animateGalaxy);
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+
+        window.onload = function () {
+            renderInvitationDetails();
+            renderGuestbook();
+            initGalaxyCanvas();
+            animateGalaxy();
+        };
+    </script>
+</body>
+</html>
