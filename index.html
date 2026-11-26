@@ -10,8 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Tone.js for dreamy synthesized music-box chimes without external sound URLs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
     <script>
         tailwind.config = {
@@ -68,6 +66,7 @@
             transform: scale(1.08);
             visibility: hidden;
             pointer-events: none;
+            z-index: -1;
         }
 
         /* Deep Nebula Galaxy Gradient */
@@ -155,23 +154,18 @@
         </div>
     </div>
 
-    <!-- Top Floating Controls (Music-Box Chime Toggle & Host Customizer Button) -->
+    <!-- Top Floating Control (YouTube Piano Cover Toggle) -->
     <div class="fixed top-3 right-3 z-40 flex items-center gap-2">
-        <button id="music-toggle-btn" onclick="toggleCosmicAudio()" aria-label="Toggle Dreamy Music Chimes" class="p-2.5 rounded-full bg-army-deep/90 backdrop-blur-md border border-army-lilac/40 shadow-lg text-army-lilac hover:bg-army-royal/40 transition active:scale-95 flex items-center gap-1.5 text-xs font-semibold">
-            <span id="music-icon" class="text-base">🔇</span>
-            <span class="hidden sm:inline" id="music-label">Synth Off</span>
-        </button>
-
-        <button onclick="openEditModal()" class="px-3.5 py-2.5 rounded-full holo-gradient text-white shadow-lg hover:opacity-95 transition active:scale-95 flex items-center gap-1.5 text-xs font-bold tracking-wide border border-white/30">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
-            <span>Customize Invite</span>
+        <button id="music-toggle-btn" type="button" onclick="togglePianoCover()" aria-label="Toggle YouTube Piano Cover" class="p-2.5 rounded-full bg-army-deep/90 backdrop-blur-md border border-army-lilac/40 shadow-lg text-army-lilac hover:bg-army-royal/40 transition active:scale-95 flex items-center gap-1.5 text-xs font-semibold">
+            <span id="music-icon" class="text-base">🎹</span>
+            <span class="hidden sm:inline" id="music-label">Piano Off</span>
         </button>
     </div>
 
     <!-- ===================================================================== -->
     <!-- 1. INTERACTIVE ENTRY GATE (VIP ARMY Ticket / Holographic Pass)        -->
     <!-- ===================================================================== -->
-    <div id="welcome-gate" class="fixed inset-0 z-30 flex items-center justify-center p-4 nebula-bg">
+    <div id="welcome-gate" class="fixed inset-0 z-50 flex items-center justify-center p-4 nebula-bg">
         <div class="w-full max-w-md cosmic-card rounded-3xl p-7 text-center relative overflow-hidden shadow-2xl border border-army-lilac/40">
 
             <!-- Top Holographic Pass Header -->
@@ -222,7 +216,7 @@
             <div class="ticket-divider my-6"></div>
 
             <!-- Glowing Holographic Seal Button -->
-            <button onclick="unlockInvitation()" class="glow-portal group relative inline-flex items-center justify-center px-7 py-4 rounded-2xl holo-gradient text-white font-bold text-sm tracking-wide transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer mx-auto border border-white/40 shadow-xl">
+            <button type="button" onclick="unlockInvitation()" class="glow-portal group relative inline-flex items-center justify-center px-7 py-4 rounded-2xl holo-gradient text-white font-bold text-sm tracking-wide transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer mx-auto border border-white/40 shadow-xl">
                 <span class="flex items-center gap-2.5">
                     <span class="text-lg group-hover:rotate-12 transition-transform">🎫</span>
                     <span>Tap to Unlock • Borahae 💜</span>
@@ -378,7 +372,7 @@
 
                     <!-- One-Tap Copy Address & Google Maps Buttons -->
                     <div class="grid grid-cols-2 gap-3 pt-2">
-                        <button onclick="copyVenueAddress()" class="py-3 px-3 rounded-2xl bg-army-deep hover:bg-army-royal/50 border border-army-lilac/40 text-army-mist font-semibold text-xs flex items-center justify-center gap-1.5 transition active:scale-95">
+                        <button type="button" onclick="copyVenueAddress()" class="py-3 px-3 rounded-2xl bg-army-deep hover:bg-army-royal/50 border border-army-lilac/40 text-army-mist font-semibold text-xs flex items-center justify-center gap-1.5 transition active:scale-95">
                             <span>📋</span>
                             <span>Copy Address</span>
                         </button>
@@ -492,11 +486,35 @@
                     </div>
 
                     <!-- Optional Gift / Bias Note Box -->
-                    <div class="bg-army-void/70 rounded-2xl p-4 border border-army-lilac/25 text-left flex items-start gap-3">
+                    <div class="bg-army-void/70 rounded-2xl p-4 border border-army-lilac/25 text-left flex items-start gap-3 mb-4">
                         <span class="text-xl mt-0.5">🎁</span>
                         <div class="text-xs leading-relaxed text-army-lilac/90">
                             <strong class="font-bold text-white block mb-0.5">Gift & Bias Note:</strong>
                             <span id="display-gift-note">Celebrating together is the best present! If you'd like to bring a little something, purple accessories, vinyls, or handwritten letters are always cherished.</span>
+                        </div>
+                    </div>
+
+                    <!-- YouTube Piano Cover Player -->
+                    <div id="music-player-box" class="bg-army-void/70 rounded-2xl p-4 border border-army-lilac/25 text-center">
+                        <button id="toggle-music-btn" type="button" onclick="togglePianoCover()" class="px-4 py-2.5 rounded-full holo-gradient text-white font-bold text-xs inline-flex items-center gap-2 shadow-md hover:opacity-95 transition active:scale-95 cursor-pointer">
+                            <span>🎹</span>
+                            <span>Play Piano Cover</span>
+                        </button>
+                        <p class="text-[10px] text-army-lilac/70 mt-2">
+                            Starts at 0:33 • Tap play inside the video if your browser blocks auto-sound
+                        </p>
+                        <div id="yt-wrapper" class="hidden mt-3 rounded-2xl overflow-hidden border border-army-lilac/30">
+                            <iframe
+                                id="yt-piano-frame"
+                                width="100%"
+                                height="200"
+                                src=""
+                                title="YouTube Piano Cover"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                                class="border-0 w-full block">
+                            </iframe>
                         </div>
                     </div>
                 </div>
@@ -599,94 +617,9 @@
     </main>
 
     <!-- ===================================================================== -->
-    <!-- 6. HOST CUSTOMIZER MODAL & STANDALONE HTML DOWNLOADER                 -->
-    <!-- ===================================================================== -->
-    <div id="edit-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-md">
-        <div class="bg-army-midnight w-full max-w-md rounded-3xl p-6 border border-army-lilac/50 shadow-2xl max-h-[90vh] overflow-y-auto text-white">
-            <div class="flex items-center justify-between mb-4 border-b border-army-lilac/25 pb-3">
-                <div>
-                    <h3 class="font-display text-xl font-bold holo-text">✨ Customize Invitation</h3>
-                    <p class="text-[11px] text-army-lilac/75">Edit details & export your ready-to-host HTML file</p>
-                </div>
-                <button onclick="closeEditModal()" class="w-8 h-8 rounded-full bg-army-deep text-army-lilac flex items-center justify-center font-bold hover:bg-army-borahae hover:text-white transition">✕</button>
-            </div>
-
-            <form id="edit-details-form" onsubmit="saveInvitationDetails(event)" class="space-y-3.5 text-sm">
-                <!-- Photo Upload via FileReader -->
-                <div class="p-3.5 rounded-2xl bg-army-void/80 border border-army-lilac/30">
-                    <label class="block text-xs font-bold text-army-goldStar uppercase mb-1.5">📸 Upload Birthday Photo</label>
-                    <input type="file" id="edit-photo-upload" accept="image/*" onchange="handlePhotoUpload(event)"
-                           class="w-full text-xs text-army-lilac file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-army-borahae file:text-white hover:file:bg-army-royal cursor-pointer">
-                    <p class="text-[10px] text-army-lilac/65 mt-1">Photo updates immediately and is embedded when you download your HTML!</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Celebrant's Name</label>
-                        <input type="text" id="edit-celebrant-name" required class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Milestone / Age</label>
-                        <input type="text" id="edit-milestone" required placeholder="e.g., Turning 21 or 1st Birthday" class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Welcome Quote</label>
-                    <textarea id="edit-welcome-quote" rows="2" required class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white"></textarea>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Party Date</label>
-                        <input type="text" id="edit-date" required class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Party Time</label>
-                        <input type="text" id="edit-time" required class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Countdown Target Date & Time</label>
-                    <input type="datetime-local" id="edit-countdown-target" class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Venue Name</label>
-                    <input type="text" id="edit-venue-name" required class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Venue Address</label>
-                    <input type="text" id="edit-venue-address" required class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Gift / Bias Note</label>
-                    <textarea id="edit-gift-note" rows="2" class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white"></textarea>
-                </div>
-
-                <!-- Save & Download Buttons -->
-                <div class="space-y-2.5 pt-2">
-                    <div class="flex items-center gap-2.5">
-                        <button type="button" onclick="closeEditModal()" class="flex-1 py-2.5 rounded-xl bg-army-deep text-army-lilac font-semibold text-xs border border-army-lilac/30">Cancel</button>
-                        <button type="submit" class="flex-1 py-2.5 rounded-xl bg-army-borahae hover:bg-army-royal text-white font-bold text-xs shadow-md">Apply Changes ✨</button>
-                    </div>
-
-                    <button type="button" onclick="downloadCustomHtml()" class="w-full py-3 rounded-xl holo-gradient text-white font-bold text-xs shadow-lg border border-white/30 flex items-center justify-center gap-2 hover:opacity-95 transition">
-                        <span>⬇️ Download Updated HTML (bts-invitation.html)</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- ===================================================================== -->
-    <!-- INTERACTIVE LOGIC, GALAXY PARTICLE CANVAS, AUDIO & EXPORT ENGINE      -->
+    <!-- INTERACTIVE LOGIC, GALAXY PARTICLE CANVAS & PIANO COVER ENGINE      -->
     <!-- ===================================================================== -->
     <script id="invitation-state-script">
-        // Default configuration (gets updated automatically inside downloaded HTML exports)
         window.INITIAL_INVITE_DATA = {
             celebrantName: "Minji",
             milestone: "Turning 21",
@@ -710,7 +643,6 @@
 
         let invitationData = { ...window.INITIAL_INVITE_DATA };
 
-        // Load saved host edits if present in localStorage
         try {
             const savedDetails = localStorage.getItem(STORAGE_KEY_DETAILS);
             if (savedDetails) {
@@ -720,7 +652,6 @@
             console.warn("Could not read saved details from localStorage:", e);
         }
 
-        // Default sample ARMY Guestbook entries
         const defaultRsvps = [
             {
                 id: 101,
@@ -751,7 +682,7 @@
         }
 
         // ---------------------------------------------------------------------
-        // 2. TOAST NOTIFICATION BANNER (Replaces browser alert)
+        // 2. TOAST NOTIFICATION BANNER
         // ---------------------------------------------------------------------
         let toastTimeout;
         function showToast(message, icon = "💜") {
@@ -770,67 +701,54 @@
         }
 
         // ---------------------------------------------------------------------
-        // 3. DREAMY SYNTHESIZED MUSIC-BOX CHIMES (Tone.js - Self-contained)
+        // 3. YOUTUBE PIANO COVER EMBED CONTROLLER
         // ---------------------------------------------------------------------
-        let isAudioPlaying = false;
-        let cosmicLoop = null;
-        let cosmicSynth = null;
+        const PIANO_VIDEO_ID = "3oyvs1ZTZAU";
+        let isPianoPlaying = false;
 
-        async function initCosmicAudio() {
-            if (!cosmicSynth) {
-                await Tone.start();
-                const reverb = new Tone.Reverb({ decay: 4.5, wet: 0.55 }).toDestination();
-                cosmicSynth = new Tone.PolySynth(Tone.Synth, {
-                    oscillator: { type: "triangle" },
-                    envelope: { attack: 0.04, decay: 0.9, sustain: 0.15, release: 2.0 },
-                    volume: -14
-                }).connect(reverb);
+        function updatePianoButtons(playing) {
+            const btn = document.getElementById("toggle-music-btn");
+            const topIcon = document.getElementById("music-icon");
+            const topLabel = document.getElementById("music-label");
 
-                // Dreamy starry music-box melody notes
-                const melody = ["E5", "B4", "G#5", "F#5", "E5", "B4", "C#5", "B4"];
-                let step = 0;
-                cosmicLoop = new Tone.Loop((time) => {
-                    cosmicSynth.triggerAttackRelease(melody[step % melody.length], "8n", time);
-                    step++;
-                }, "2n");
+            if (playing) {
+                if (btn) btn.innerHTML = '<span>⏸</span><span>Hide / Stop Piano Cover</span>';
+                if (topIcon) topIcon.textContent = "⏸";
+                if (topLabel) topLabel.textContent = "Piano On";
+            } else {
+                if (btn) btn.innerHTML = '<span>🎹</span><span>Play Piano Cover</span>';
+                if (topIcon) topIcon.textContent = "🎹";
+                if (topLabel) topLabel.textContent = "Piano Off";
             }
         }
 
-        async function toggleCosmicAudio() {
-            try {
-                await initCosmicAudio();
-                const iconEl = document.getElementById("music-icon");
-                const labelEl = document.getElementById("music-label");
+        function playPianoCover() {
+            const iframe = document.getElementById("yt-piano-frame");
+            const wrapper = document.getElementById("yt-wrapper");
+            if (!iframe) return;
 
-                if (!isAudioPlaying) {
-                    Tone.Transport.start();
-                    cosmicLoop.start(0);
-                    isAudioPlaying = true;
-                    iconEl.textContent = "🎶";
-                    if (labelEl) labelEl.textContent = "Synth On";
-                    showToast("Dreamy Magic Shop chimes playing", "🎵");
-                } else {
-                    cosmicLoop.stop();
-                    Tone.Transport.stop();
-                    isAudioPlaying = false;
-                    iconEl.textContent = "🔇";
-                    if (labelEl) labelEl.textContent = "Synth Off";
-                }
-            } catch (err) {
-                console.error("Audio error:", err);
-            }
+            if (wrapper) wrapper.classList.remove("hidden");
+            iframe.src = `https://www.youtube.com/embed/${PIANO_VIDEO_ID}?autoplay=1&start=33&rel=0&playsinline=1`;
+            isPianoPlaying = true;
+            updatePianoButtons(true);
+            showToast("Loading piano cover (starts at 0:33)", "🎹");
         }
 
-        async function playUnlockSparkle() {
-            try {
-                await initCosmicAudio();
-                const now = Tone.now();
-                cosmicSynth.triggerAttackRelease("E5", "8n", now);
-                cosmicSynth.triggerAttackRelease("G#5", "8n", now + 0.1);
-                cosmicSynth.triggerAttackRelease("B5", "8n", now + 0.2);
-                cosmicSynth.triggerAttackRelease("E6", "4n", now + 0.3);
-            } catch (e) {
-                // Ignore if blocked prior to interaction
+        function stopPianoCover() {
+            const iframe = document.getElementById("yt-piano-frame");
+            const wrapper = document.getElementById("yt-wrapper");
+
+            if (iframe) iframe.src = "";
+            if (wrapper) wrapper.classList.add("hidden");
+            isPianoPlaying = false;
+            updatePianoButtons(false);
+        }
+
+        function togglePianoCover() {
+            if (isPianoPlaying) {
+                stopPianoCover();
+            } else {
+                playPianoCover();
             }
         }
 
@@ -840,7 +758,7 @@
         function unlockInvitation() {
             const gate = document.getElementById("welcome-gate");
             gate.classList.add("opened");
-            playUnlockSparkle();
+            playPianoCover();
             burstPurpleHearts();
         }
 
@@ -880,7 +798,7 @@
         }
 
         // ---------------------------------------------------------------------
-        // 6. RENDER INVITATION DETAILS & HOST CUSTOMIZER MODAL
+        // 6. RENDER INVITATION DETAILS
         // ---------------------------------------------------------------------
         function renderInvitationDetails() {
             document.querySelectorAll(".display-celebrant-name").forEach(el => {
@@ -895,131 +813,16 @@
             document.getElementById("display-venue-name").textContent = invitationData.venueName;
             document.getElementById("display-venue-address").textContent = invitationData.venueAddress;
             document.getElementById("display-gift-note").textContent = invitationData.giftNote;
-
-            // Update photo
             document.getElementById("celebrant-photo-img").src = invitationData.photoDataUrl;
 
-            // Update Google Maps URL
             const encodedAddress = encodeURIComponent(`${invitationData.venueName}, ${invitationData.venueAddress}`);
             document.getElementById("maps-link-btn").href = `https://maps.google.com/?q=${encodedAddress}`;
 
             startCountdown();
         }
 
-        function openEditModal() {
-            document.getElementById("edit-celebrant-name").value = invitationData.celebrantName;
-            document.getElementById("edit-milestone").value = invitationData.milestone;
-            document.getElementById("edit-welcome-quote").value = invitationData.welcomeQuote;
-            document.getElementById("edit-date").value = invitationData.date;
-            document.getElementById("edit-time").value = invitationData.time;
-            document.getElementById("edit-countdown-target").value = invitationData.countdownTarget;
-            document.getElementById("edit-venue-name").value = invitationData.venueName;
-            document.getElementById("edit-venue-address").value = invitationData.venueAddress;
-            document.getElementById("edit-gift-note").value = invitationData.giftNote;
-
-            const modal = document.getElementById("edit-modal");
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
-        }
-
-        function closeEditModal() {
-            const modal = document.getElementById("edit-modal");
-            modal.classList.add("hidden");
-            modal.classList.remove("flex");
-        }
-
-        // Photo Upload via FileReader
-        function handlePhotoUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                invitationData.photoDataUrl = e.target.result;
-                document.getElementById("celebrant-photo-img").src = invitationData.photoDataUrl;
-                try {
-                    localStorage.setItem(STORAGE_KEY_DETAILS, JSON.stringify(invitationData));
-                } catch (err) {
-                    console.warn("Image too large for localStorage, kept in session & ready for HTML export.");
-                }
-                showToast("Portrait updated! Ready to preview or download.", "📸");
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function saveInvitationDetails(event) {
-            event.preventDefault();
-            invitationData.celebrantName = document.getElementById("edit-celebrant-name").value.trim();
-            invitationData.milestone = document.getElementById("edit-milestone").value.trim();
-            invitationData.welcomeQuote = document.getElementById("edit-welcome-quote").value.trim();
-            invitationData.date = document.getElementById("edit-date").value.trim();
-            invitationData.time = document.getElementById("edit-time").value.trim();
-            invitationData.countdownTarget = document.getElementById("edit-countdown-target").value || invitationData.countdownTarget;
-            invitationData.venueName = document.getElementById("edit-venue-name").value.trim();
-            invitationData.venueAddress = document.getElementById("edit-venue-address").value.trim();
-            invitationData.giftNote = document.getElementById("edit-gift-note").value.trim();
-
-            try {
-                localStorage.setItem(STORAGE_KEY_DETAILS, JSON.stringify(invitationData));
-            } catch (err) {
-                console.warn("Could not persist details to localStorage:", err);
-            }
-
-            renderInvitationDetails();
-            closeEditModal();
-            showToast("Borahae invitation updated!", "💜");
-        }
-
         // ---------------------------------------------------------------------
-        // 7. STANDALONE HTML EXPORT (Bakes custom edits into downloadable file)
-        // ---------------------------------------------------------------------
-        function downloadCustomHtml() {
-            // Sync current form inputs before exporting
-            invitationData.celebrantName = document.getElementById("edit-celebrant-name").value.trim() || invitationData.celebrantName;
-            invitationData.milestone = document.getElementById("edit-milestone").value.trim() || invitationData.milestone;
-            invitationData.welcomeQuote = document.getElementById("edit-welcome-quote").value.trim() || invitationData.welcomeQuote;
-            invitationData.date = document.getElementById("edit-date").value.trim() || invitationData.date;
-            invitationData.time = document.getElementById("edit-time").value.trim() || invitationData.time;
-            invitationData.countdownTarget = document.getElementById("edit-countdown-target").value || invitationData.countdownTarget;
-            invitationData.venueName = document.getElementById("edit-venue-name").value.trim() || invitationData.venueName;
-            invitationData.venueAddress = document.getElementById("edit-venue-address").value.trim() || invitationData.venueAddress;
-            invitationData.giftNote = document.getElementById("edit-gift-note").value.trim() || invitationData.giftNote;
-
-            renderInvitationDetails();
-
-            // Clone document and update the embedded INITIAL_INVITE_DATA script block
-            const clonedDoc = document.documentElement.cloneNode(true);
-            // Reset gate and modal states in the exported copy so guests see the cover gate first
-            const exportedGate = clonedDoc.querySelector("#welcome-gate");
-            if (exportedGate) exportedGate.classList.remove("opened");
-            const exportedModal = clonedDoc.querySelector("#edit-modal");
-            if (exportedModal) {
-                exportedModal.classList.add("hidden");
-                exportedModal.classList.remove("flex");
-            }
-
-            const stateScript = clonedDoc.querySelector("#invitation-state-script");
-            if (stateScript) {
-                stateScript.textContent = `\n        window.INITIAL_INVITE_DATA = ${JSON.stringify(invitationData, null, 4)};\n    `;
-            }
-
-            const finalHtml = "<!DOCTYPE html>\n" + clonedDoc.outerHTML;
-            const blob = new Blob([finalHtml], { type: "text/html;charset=utf-8" });
-            const url = URL.createObjectURL(blob);
-
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "bts-invitation.html";
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-
-            showToast("Downloaded bts-invitation.html! Ready to host.", "⬇️");
-        }
-
-        // ---------------------------------------------------------------------
-        // 8. COPY VENUE ADDRESS (execCommand fallback for iFrame safety)
+        // 7. COPY VENUE ADDRESS
         // ---------------------------------------------------------------------
         function copyVenueAddress() {
             const fullAddress = `${invitationData.venueName}, ${invitationData.venueAddress}`;
@@ -1037,7 +840,7 @@
         }
 
         // ---------------------------------------------------------------------
-        // 9. WORKING RSVP FORM & LIVE ARMY GUESTBOOK / SONG QUEUE
+        // 8. WORKING RSVP FORM & LIVE ARMY GUESTBOOK / SONG QUEUE
         // ---------------------------------------------------------------------
         function toggleGuestCountField(isAttending) {
             const wrapper = document.getElementById("guest-count-wrapper");
@@ -1128,7 +931,7 @@
         }
 
         // ---------------------------------------------------------------------
-        // 10. COSMIC STARDUST & PURPLE HEART CONFETTI CANVAS
+        // 9. COSMIC STARDUST & PURPLE HEART CONFETTI CANVAS
         // ---------------------------------------------------------------------
         const canvas = document.getElementById("galaxy-canvas");
         const ctx = canvas.getContext("2d");
