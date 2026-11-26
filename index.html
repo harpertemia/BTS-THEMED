@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Borahae Birthday Celebration • BTS Inspired Invitation</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cinzel & Playfair Display (Regal Cosmic Display) + Plus Jakarta Sans (Clean Mobile Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tone.js for dreamy synthesized music-box chimes without external sound URLs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['"Cinzel"', 'serif'],
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        army: {
+                            void: '#0D061A',
+                            midnight: '#160B2E',
+                            deep: '#24124D',
+                            royal: '#6D28D9',
+                            borahae: '#8B5CF6',
+                            lilac: '#C4B5FD',
+                            mist: '#EDE9FE',
+                            pinkGlow: '#F472B6',
+                            goldStar: '#FDE68A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Cosmic Purple Galaxy Background & Holographic Effects */
+        body {
+            background-color: #090412;
+            color: #F5F3FF;
+            overflow-x: hidden;
+        }
+
+        /* Floating Starlight & Purple Heart Canvas */
+        #galaxy-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 40;
+        }
+
+        /* VIP Concert Pass Entrance Gate Transition */
+        #welcome-gate {
+            transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
+        }
+        #welcome-gate.opened {
+            opacity: 0;
+            transform: scale(1.08);
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Deep Nebula Galaxy Gradient */
+        .nebula-bg {
+            background-color: #120824;
+            background-image:
+                radial-gradient(circle at 18% 12%, rgba(139, 92, 246, 0.32) 0%, transparent 45%),
+                radial-gradient(circle at 85% 22%, rgba(244, 114, 182, 0.22) 0%, transparent 45%),
+                radial-gradient(circle at 15% 65%, rgba(109, 40, 217, 0.28) 0%, transparent 50%),
+                radial-gradient(circle at 82% 85%, rgba(196, 181, 253, 0.2) 0%, transparent 48%);
+        }
+
+        /* Frosted Glass Cosmic Card with Iridescent Border */
+        .cosmic-card {
+            background: rgba(26, 13, 54, 0.72);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(196, 181, 253, 0.28);
+            box-shadow: 0 12px 35px -10px rgba(109, 40, 217, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+
+        /* Holographic Shimmer Gradient */
+        .holo-gradient {
+            background: linear-gradient(135deg, #7C3AED 0%, #C084FC 35%, #F472B6 70%, #818CF8 100%);
+        }
+
+        .holo-text {
+            background: linear-gradient(135deg, #F5F3FF 0%, #DDD6FE 40%, #F9A8D4 80%, #FDE68A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Gentle Cosmic Whale & Moon Floating Animation */
+        @keyframes driftWhale {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(-2deg); }
+            50% { transform: translateY(-10px) translateX(6px) rotate(2deg); }
+        }
+        .animate-whale {
+            animation: driftWhale 6s ease-in-out infinite;
+        }
+
+        @keyframes pulseAura {
+            0%, 100% { box-shadow: 0 0 18px rgba(139, 92, 246, 0.55), 0 0 36px rgba(244, 114, 182, 0.35); }
+            50% { box-shadow: 0 0 28px rgba(167, 139, 250, 0.85), 0 0 52px rgba(244, 114, 182, 0.55); }
+        }
+        .glow-portal {
+            animation: pulseAura 2.8s infinite;
+        }
+
+        /* Ticket Perforation Notch Effect */
+        .ticket-divider {
+            position: relative;
+            border-top: 2px dashed rgba(196, 181, 253, 0.35);
+        }
+        .ticket-divider::before,
+        .ticket-divider::after {
+            content: '';
+            position: absolute;
+            top: -12px;
+            width: 22px;
+            height: 22px;
+            border-radius: 9999px;
+            background-color: #120824;
+            border: 1px solid rgba(196, 181, 253, 0.25);
+        }
+        .ticket-divider::before { left: -35px; }
+        .ticket-divider::after { right: -35px; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #120824; }
+        ::-webkit-scrollbar-thumb { background: #6D28D9; border-radius: 10px; }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-army-borahae selection:text-white">
+
+    <!-- Floating Stardust & Purple Heart Particle Canvas -->
+    <canvas id="galaxy-canvas"></canvas>
+
+    <!-- Custom Toast Notification Banner (No alert() used) -->
+    <div id="toast-banner" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transform -translate-y-24 opacity-0 transition-all duration-300 pointer-events-none w-11/12 max-w-sm">
+        <div class="bg-army-deep text-army-mist px-4 py-3 rounded-2xl shadow-2xl border border-army-lilac/50 flex items-center justify-center gap-2 text-sm font-medium text-center backdrop-blur-md">
+            <span id="toast-icon">💜</span>
+            <span id="toast-message">Action completed!</span>
+        </div>
+    </div>
+
+    <!-- Top Floating Controls (Music-Box Chime Toggle & Host Customizer Button) -->
+    <div class="fixed top-3 right-3 z-40 flex items-center gap-2">
+        <button id="music-toggle-btn" onclick="toggleCosmicAudio()" aria-label="Toggle Dreamy Music Chimes" class="p-2.5 rounded-full bg-army-deep/90 backdrop-blur-md border border-army-lilac/40 shadow-lg text-army-lilac hover:bg-army-royal/40 transition active:scale-95 flex items-center gap-1.5 text-xs font-semibold">
+            <span id="music-icon" class="text-base">🔇</span>
+            <span class="hidden sm:inline" id="music-label">Synth Off</span>
+        </button>
+
+        <button onclick="openEditModal()" class="px-3.5 py-2.5 rounded-full holo-gradient text-white shadow-lg hover:opacity-95 transition active:scale-95 flex items-center gap-1.5 text-xs font-bold tracking-wide border border-white/30">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+            <span>Customize Invite</span>
+        </button>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 1. INTERACTIVE ENTRY GATE (VIP ARMY Ticket / Holographic Pass)        -->
+    <!-- ===================================================================== -->
+    <div id="welcome-gate" class="fixed inset-0 z-30 flex items-center justify-center p-4 nebula-bg">
+        <div class="w-full max-w-md cosmic-card rounded-3xl p-7 text-center relative overflow-hidden shadow-2xl border border-army-lilac/40">
+
+            <!-- Top Holographic Pass Header -->
+            <div class="flex items-center justify-between text-[10px] uppercase tracking-[0.22em] text-army-lilac/80 font-bold mb-4">
+                <span>ARMY VIP PASS • NO. 0613</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-army-borahae/30 border border-army-lilac/40 text-army-goldStar">BORAHAE EDITION</span>
+            </div>
+
+            <!-- Custom Cosmic Whale (Kore-inspired) & BTS/ARMY Door Emblem SVG -->
+            <div class="relative w-36 h-28 mx-auto mb-2 flex items-center justify-center animate-whale">
+                <svg class="w-full h-full drop-shadow-[0_0_15px_rgba(167,139,250,0.65)]" viewBox="0 0 180 120" fill="none">
+                    <!-- Crescent Moon Glow -->
+                    <path d="M132 18 C118 22, 112 38, 120 50 C126 58, 138 60, 146 56 C136 66, 118 64, 110 52 C102 38, 108 20, 124 14 C127 13, 130 15, 132 18 Z" fill="#FDE68A" fill-opacity="0.85"/>
+                    <!-- Cosmic Whale Silhouette -->
+                    <path d="M35 72 C35 48, 68 38, 102 46 C122 50, 136 62, 148 52 C152 48, 158 42, 162 46 C164 49, 156 58, 152 62 C158 66, 165 72, 160 76 C155 79, 148 72, 144 68 C130 82, 95 92, 62 86 C44 83, 35 78, 35 72 Z" fill="url(#whaleGrad)" stroke="#DDD6FE" stroke-width="1.3"/>
+                    <!-- Whale Belly Lines -->
+                    <path d="M52 78 C72 84, 98 84, 118 76" stroke="#F5F3FF" stroke-opacity="0.5" stroke-width="1.2" stroke-linecap="round"/>
+                    <!-- Water Spout Hearts & Stars -->
+                    <circle cx="72" cy="26" r="2" fill="#F472B6"/>
+                    <circle cx="82" cy="18" r="2.5" fill="#FDE68A"/>
+                    <circle cx="64" cy="19" r="1.5" fill="#C4B5FD"/>
+                    <!-- Iconic BTS & ARMY Door Shield Mini Badge -->
+                    <g transform="translate(76, 52) scale(0.55)">
+                        <polygon points="0,0 16,6 16,32 0,38" fill="#F5F3FF" fill-opacity="0.9"/>
+                        <polygon points="36,0 20,6 20,32 36,38" fill="#F5F3FF" fill-opacity="0.9"/>
+                    </g>
+                    <defs>
+                        <linearGradient id="whaleGrad" x1="35" y1="40" x2="160" y2="85" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#8B5CF6"/>
+                            <stop offset="50%" stop-color="#6D28D9"/>
+                            <stop offset="100%" stop-color="#EC4899"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <p class="uppercase tracking-[0.25em] text-xs font-bold text-army-pinkGlow mb-1.5">
+                You Are Invited • Borahae Celebration
+            </p>
+            <h1 class="font-display text-3xl sm:text-4xl font-extrabold holo-text leading-tight mb-2">
+                Magic Shop Galaxy Party
+            </h1>
+            <p class="font-serif italic text-lg text-army-lilac mb-6">
+                Celebrating <span class="display-celebrant-name font-bold text-white">Minji</span> • <span class="display-milestone text-army-goldStar">Turning 21</span>
+            </p>
+
+            <!-- Ticket Perforation Divider -->
+            <div class="ticket-divider my-6"></div>
+
+            <!-- Glowing Holographic Seal Button -->
+            <button onclick="unlockInvitation()" class="glow-portal group relative inline-flex items-center justify-center px-7 py-4 rounded-2xl holo-gradient text-white font-bold text-sm tracking-wide transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer mx-auto border border-white/40 shadow-xl">
+                <span class="flex items-center gap-2.5">
+                    <span class="text-lg group-hover:rotate-12 transition-transform">🎫</span>
+                    <span>Tap to Unlock • Borahae 💜</span>
+                </span>
+            </button>
+
+            <p class="text-[11px] text-army-lilac/70 mt-5">
+                ✨ Step through the Magic Shop doors into our purple universe ✨
+            </p>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MAIN MOBILE-FIRST GALAXY INVITATION CONTAINER                         -->
+    <!-- ===================================================================== -->
+    <main id="main-invitation" class="min-h-screen w-full flex justify-center py-0 sm:py-8 px-0 sm:px-4">
+        <!-- Mobile Phone Viewport Frame (Max 480px on desktop, full width on mobile) -->
+        <div class="w-full max-w-[480px] nebula-bg sm:rounded-[2.5rem] sm:border-2 sm:border-army-lilac/35 shadow-[0_0_60px_rgba(109,40,217,0.45)] overflow-hidden relative pb-12">
+
+            <!-- Sticky Quick-Jump Mobile Navigation Bar -->
+            <nav class="sticky top-0 z-20 bg-army-midnight/85 backdrop-blur-md border-b border-army-lilac/20 px-3 py-2.5 flex items-center justify-around text-xs font-semibold text-army-lilac">
+                <a href="#spotlight" class="px-2.5 py-1.5 rounded-full hover:bg-army-borahae/30 hover:text-white transition">Star</a>
+                <a href="#details" class="px-2.5 py-1.5 rounded-full hover:bg-army-borahae/30 hover:text-white transition">Setlist</a>
+                <a href="#dresscode" class="px-2.5 py-1.5 rounded-full hover:bg-army-borahae/30 hover:text-white transition">Dress Code</a>
+                <a href="#rsvp" class="px-3.5 py-1.5 rounded-full holo-gradient text-white shadow-md hover:opacity-90 transition font-bold">RSVP 💜</a>
+            </nav>
+
+            <!-- ============================================================= -->
+            <!-- 2. BIRTHDAY STAR SPOTLIGHT & LIVE COUNTDOWN                   -->
+            <!-- ============================================================= -->
+            <section id="spotlight" class="px-6 pt-9 pb-7 text-center relative">
+                <!-- Milestone Pill Badge -->
+                <div class="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-army-borahae/25 border border-army-lilac/40 text-army-goldStar text-xs font-bold tracking-widest uppercase mb-3">
+                    <span>✨</span>
+                    <span class="display-milestone">Turning 21</span>
+                    <span>✨</span>
+                </div>
+
+                <h2 class="font-display text-4xl sm:text-5xl font-extrabold holo-text mb-1.5">
+                    <span class="display-celebrant-name">Minji</span>
+                </h2>
+                <p class="font-serif italic text-base text-army-lilac mb-6">
+                    invites you to a Borahae galaxy celebration
+                </p>
+
+                <!-- Circular Holographic Galaxy Portrait Frame -->
+                <div class="relative w-52 h-52 mx-auto mb-6">
+                    <!-- Rotating Orbit Ring & Stars -->
+                    <div class="absolute -inset-2 rounded-full border-2 border-dashed border-army-lilac/60 animate-[spin_24s_linear_infinite]"></div>
+                    <div class="absolute -inset-4 rounded-full border border-army-pinkGlow/30 animate-[spin_36s_linear_infinite_reverse]"></div>
+
+                    <!-- Portrait Photo Container -->
+                    <div class="w-full h-full rounded-full overflow-hidden border-4 border-army-lilac/80 shadow-[0_0_30px_rgba(139,92,246,0.65)] bg-army-deep flex items-center justify-center relative">
+                        <img id="celebrant-photo-img"
+                             src="https://placehold.co/400x400/24124D/E9D5FF?text=Borahae+Star+%F0%9F%92%9C"
+                             alt="Birthday Star Portrait"
+                             onerror="this.src='https://placehold.co/400x400/24124D/E9D5FF?text=ARMY+Star'"
+                             class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Floating Corner Emblems -->
+                    <span class="absolute -top-2 left-1/2 -translate-x-1/2 text-xl drop-shadow-[0_0_8px_rgba(253,230,138,0.9)]">👑</span>
+                    <span class="absolute -bottom-2.5 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-army-midnight border border-army-lilac/50 text-xs font-bold text-army-pinkGlow shadow">
+                        💜 06.13 💜
+                    </span>
+                </div>
+
+                <!-- Live Party Countdown Timer -->
+                <div class="cosmic-card rounded-3xl p-4 mb-5">
+                    <p class="text-[10px] uppercase tracking-[0.22em] text-army-lilac/80 font-bold mb-2.5">Countdown to Showtime</p>
+                    <div class="grid grid-cols-4 gap-2 text-center">
+                        <div class="bg-army-void/70 rounded-2xl py-2.5 px-1 border border-army-lilac/20">
+                            <span id="cd-days" class="font-display text-xl sm:text-2xl font-bold text-white block">00</span>
+                            <span class="text-[10px] uppercase tracking-wider text-army-lilac/75">Days</span>
+                        </div>
+                        <div class="bg-army-void/70 rounded-2xl py-2.5 px-1 border border-army-lilac/20">
+                            <span id="cd-hours" class="font-display text-xl sm:text-2xl font-bold text-white block">00</span>
+                            <span class="text-[10px] uppercase tracking-wider text-army-lilac/75">Hours</span>
+                        </div>
+                        <div class="bg-army-void/70 rounded-2xl py-2.5 px-1 border border-army-lilac/20">
+                            <span id="cd-mins" class="font-display text-xl sm:text-2xl font-bold text-white block">00</span>
+                            <span class="text-[10px] uppercase tracking-wider text-army-lilac/75">Mins</span>
+                        </div>
+                        <div class="bg-army-void/70 rounded-2xl py-2.5 px-1 border border-army-lilac/20">
+                            <span id="cd-secs" class="font-display text-xl sm:text-2xl font-bold text-army-pinkGlow block">00</span>
+                            <span class="text-[10px] uppercase tracking-wider text-army-lilac/75">Secs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BTS-Inspired Welcome Quote Card -->
+                <div class="cosmic-card rounded-3xl p-5 text-center">
+                    <p id="display-welcome-quote" class="font-serif text-lg leading-relaxed text-army-mist italic">
+                        "In a galaxy of stars, let's shine together — I Purple You 💜"
+                    </p>
+                </div>
+            </section>
+
+            <!-- BTS / ARMY Door Shield Divider -->
+            <div class="flex items-center justify-center gap-3 px-8 opacity-75">
+                <div class="h-px bg-gradient-to-r from-transparent via-army-lilac to-transparent flex-1"></div>
+                <svg class="w-6 h-6 text-army-lilac" viewBox="0 0 36 38" fill="currentColor">
+                    <polygon points="2,2 15,7 15,31 2,36"/>
+                    <polygon points="34,2 21,7 21,31 34,36"/>
+                </svg>
+                <div class="h-px bg-gradient-to-r from-transparent via-army-lilac to-transparent flex-1"></div>
+            </div>
+
+            <!-- ============================================================= -->
+            <!-- 3. INTERACTIVE EVENT DETAILS & CONCERT "SETLIST"              -->
+            <!-- ============================================================= -->
+            <section id="details" class="px-6 py-8">
+                <div class="text-center mb-6">
+                    <p class="text-xs uppercase tracking-[0.22em] text-army-pinkGlow font-bold">Venue & Coordinates</p>
+                    <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mt-1">Magic Shop Location</h3>
+                </div>
+
+                <!-- Date, Time & Venue Card -->
+                <div class="cosmic-card rounded-3xl p-6 space-y-5 mb-6">
+                    <!-- Date -->
+                    <div class="flex items-start gap-4">
+                        <div class="w-11 h-11 rounded-2xl bg-army-borahae/30 border border-army-lilac/30 flex items-center justify-center text-xl shrink-0">
+                            🗓️
+                        </div>
+                        <div>
+                            <p class="text-[11px] uppercase tracking-wider text-army-lilac/80 font-bold">Date</p>
+                            <p id="display-date" class="font-serif text-xl font-bold text-white">Saturday, June 13, 2026</p>
+                        </div>
+                    </div>
+
+                    <!-- Time -->
+                    <div class="flex items-start gap-4">
+                        <div class="w-11 h-11 rounded-2xl bg-army-pinkGlow/25 border border-army-pinkGlow/30 flex items-center justify-center text-xl shrink-0">
+                            🕰️
+                        </div>
+                        <div>
+                            <p class="text-[11px] uppercase tracking-wider text-army-lilac/80 font-bold">Doors Open</p>
+                            <p id="display-time" class="font-serif text-xl font-bold text-white">6:00 PM – 10:00 PM</p>
+                        </div>
+                    </div>
+
+                    <!-- Venue -->
+                    <div class="flex items-start gap-4">
+                        <div class="w-11 h-11 rounded-2xl bg-army-goldStar/20 border border-army-goldStar/30 flex items-center justify-center text-xl shrink-0">
+                            🌌
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-[11px] uppercase tracking-wider text-army-lilac/80 font-bold">Venue</p>
+                            <p id="display-venue-name" class="font-serif text-xl font-bold text-white">Euphoria Rooftop Lounge</p>
+                            <p id="display-venue-address" class="text-xs text-army-lilac/80 mt-0.5">613 Mikrokosmos Ave, Seoul District</p>
+                        </div>
+                    </div>
+
+                    <!-- One-Tap Copy Address & Google Maps Buttons -->
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <button onclick="copyVenueAddress()" class="py-3 px-3 rounded-2xl bg-army-deep hover:bg-army-royal/50 border border-army-lilac/40 text-army-mist font-semibold text-xs flex items-center justify-center gap-1.5 transition active:scale-95">
+                            <span>📋</span>
+                            <span>Copy Address</span>
+                        </button>
+                        <a id="maps-link-btn" href="https://maps.google.com/?q=613+Mikrokosmos+Ave" target="_blank" rel="noopener noreferrer" class="py-3 px-3 rounded-2xl holo-gradient text-white font-bold text-xs flex items-center justify-center gap-1.5 transition active:scale-95 shadow-md">
+                            <span>📍</span>
+                            <span>Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Concert Tracklist Styled "Party Setlist" -->
+                <div class="cosmic-card rounded-3xl p-6">
+                    <div class="text-center mb-5">
+                        <span class="text-[10px] uppercase tracking-[0.25em] text-army-goldStar font-bold">Official Program</span>
+                        <h4 class="font-display text-2xl font-bold text-white mt-0.5">🎶 Party Setlist 🎶</h4>
+                    </div>
+
+                    <div class="space-y-3.5">
+                        <!-- Track 01 -->
+                        <div class="flex items-center gap-3.5 p-3 rounded-2xl bg-army-void/60 border border-army-lilac/20">
+                            <div class="w-10 h-10 rounded-xl holo-gradient flex flex-col items-center justify-center text-white font-display font-bold text-xs shrink-0">
+                                <span class="text-[8px] opacity-80">TRK</span>
+                                <span>01</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <p class="font-bold text-sm text-white">Red Carpet & Photo Zone</p>
+                                    <span class="text-[11px] font-semibold text-army-pinkGlow">6:00 PM</span>
+                                </div>
+                                <p class="text-xs text-army-lilac/75">ARMY Bomb lightstick check-in & photobooth</p>
+                            </div>
+                        </div>
+
+                        <!-- Track 02 -->
+                        <div class="flex items-center gap-3.5 p-3 rounded-2xl bg-army-void/60 border border-army-lilac/20">
+                            <div class="w-10 h-10 rounded-xl holo-gradient flex flex-col items-center justify-center text-white font-display font-bold text-xs shrink-0">
+                                <span class="text-[8px] opacity-80">TRK</span>
+                                <span>02</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <p class="font-bold text-sm text-white">Dinner & Purple Mocktails</p>
+                                    <span class="text-[11px] font-semibold text-army-pinkGlow">7:00 PM</span>
+                                </div>
+                                <p class="text-xs text-army-lilac/75">Korean feast & galaxy-inspired drinks</p>
+                            </div>
+                        </div>
+
+                        <!-- Track 03 -->
+                        <div class="flex items-center gap-3.5 p-3 rounded-2xl bg-army-void/60 border border-army-lilac/20">
+                            <div class="w-10 h-10 rounded-xl holo-gradient flex flex-col items-center justify-center text-white font-display font-bold text-xs shrink-0">
+                                <span class="text-[8px] opacity-80">TRK</span>
+                                <span>03</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <p class="font-bold text-sm text-white">BTS Trivia & Random Play Dance</p>
+                                    <span class="text-[11px] font-semibold text-army-pinkGlow">8:15 PM</span>
+                                </div>
+                                <p class="text-xs text-army-lilac/75">Win official merch & bias photocards</p>
+                            </div>
+                        </div>
+
+                        <!-- Track 04 -->
+                        <div class="flex items-center gap-3.5 p-3 rounded-2xl bg-army-void/60 border border-army-lilac/20">
+                            <div class="w-10 h-10 rounded-xl holo-gradient flex flex-col items-center justify-center text-white font-display font-bold text-xs shrink-0">
+                                <span class="text-[8px] opacity-80">TRK</span>
+                                <span>04</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <p class="font-bold text-sm text-white">Cake & Wish Under the Stars</p>
+                                    <span class="text-[11px] font-semibold text-army-pinkGlow">9:15 PM</span>
+                                </div>
+                                <p class="text-xs text-army-lilac/75">Mikrokosmos sing-along & purple confetti finale</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================= -->
+            <!-- 4. DRESS CODE & FAN NOTES                                     -->
+            <!-- ============================================================= -->
+            <section id="dresscode" class="px-6 py-6">
+                <div class="cosmic-card rounded-3xl p-6 text-center">
+                    <p class="text-xs uppercase tracking-[0.22em] text-army-pinkGlow font-bold">Concert Fit Check</p>
+                    <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mt-1 mb-2">Dress Code & Palette</h3>
+                    <p class="text-xs text-army-lilac/85 leading-relaxed mb-5">
+                        Come dressed in your favorite shades of purple, holographic lilac, or concert-ready sparkle! Don't forget your ARMY Bomb if you have one.
+                    </p>
+
+                    <!-- Interactive Color Palette Swatches -->
+                    <div class="grid grid-cols-4 gap-2 mb-6">
+                        <button type="button" onclick="showToast('Borahae Purple (#7C3AED) — Iconic violet!', '💜')" class="flex flex-col items-center gap-1.5 group cursor-pointer">
+                            <span class="w-12 h-12 rounded-full bg-[#7C3AED] border-2 border-white/80 shadow-[0_0_15px_rgba(124,58,237,0.7)] group-hover:scale-110 transition"></span>
+                            <span class="text-[10px] font-semibold text-army-mist">Borahae Purple</span>
+                        </button>
+                        <button type="button" onclick="showToast('Holographic Lilac (#C4B5FD) — Soft dreamy pastel!', '✨')" class="flex flex-col items-center gap-1.5 group cursor-pointer">
+                            <span class="w-12 h-12 rounded-full bg-[#C4B5FD] border-2 border-white/80 shadow-[0_0_15px_rgba(196,181,253,0.6)] group-hover:scale-110 transition"></span>
+                            <span class="text-[10px] font-semibold text-army-mist">Holo Lilac</span>
+                        </button>
+                        <button type="button" onclick="showToast('Midnight Galaxy (#1E1B4B) — Deep starry indigo!', '🌌')" class="flex flex-col items-center gap-1.5 group cursor-pointer">
+                            <span class="w-12 h-12 rounded-full bg-[#1E1B4B] border-2 border-army-lilac/70 shadow-[0_0_15px_rgba(30,27,75,0.8)] group-hover:scale-110 transition"></span>
+                            <span class="text-[10px] font-semibold text-army-mist">Midnight Galaxy</span>
+                        </button>
+                        <button type="button" onclick="showToast('Stardust Silver (#F3E8FF) — Iridescent shimmer!', '🪩')" class="flex flex-col items-center gap-1.5 group cursor-pointer">
+                            <span class="w-12 h-12 rounded-full bg-[#F3E8FF] border-2 border-white shadow-[0_0_15px_rgba(243,232,255,0.7)] group-hover:scale-110 transition"></span>
+                            <span class="text-[10px] font-semibold text-army-mist">Stardust Silver</span>
+                        </button>
+                    </div>
+
+                    <!-- Optional Gift / Bias Note Box -->
+                    <div class="bg-army-void/70 rounded-2xl p-4 border border-army-lilac/25 text-left flex items-start gap-3">
+                        <span class="text-xl mt-0.5">🎁</span>
+                        <div class="text-xs leading-relaxed text-army-lilac/90">
+                            <strong class="font-bold text-white block mb-0.5">Gift & Bias Note:</strong>
+                            <span id="display-gift-note">Celebrating together is the best present! If you'd like to bring a little something, purple accessories, vinyls, or handwritten letters are always cherished.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================= -->
+            <!-- 5. WORKING RSVP FORM & LIVE ARMY GUESTBOOK / SONG QUEUE       -->
+            <!-- ============================================================= -->
+            <section id="rsvp" class="px-6 py-8">
+                <div class="text-center mb-6">
+                    <p class="text-xs uppercase tracking-[0.22em] text-army-goldStar font-bold">Confirm Your Seat</p>
+                    <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mt-1">ARMY RSVP & Song Queue</h3>
+                    <p class="text-xs text-army-lilac/80 mt-1">Drop your RSVP & request a BTS track for the party playlist!</p>
+                </div>
+
+                <!-- RSVP Form -->
+                <form id="rsvp-form" onsubmit="handleRsvpSubmit(event)" class="cosmic-card rounded-3xl p-6 space-y-4 mb-8">
+                    <!-- Guest Name -->
+                    <div>
+                        <label for="guest-name" class="block text-xs font-bold uppercase tracking-wider text-army-lilac mb-1.5">Your Name / ARMY Handle *</label>
+                        <input type="text" id="guest-name" required placeholder="e.g., Hana & Jin-soo"
+                               class="w-full px-4 py-3 rounded-2xl bg-army-void/80 border border-army-lilac/35 text-white placeholder-army-lilac/40 focus:outline-none focus:ring-2 focus:ring-army-borahae text-sm">
+                    </div>
+
+                    <!-- Attending Radio Pills -->
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-army-lilac mb-1.5">Will you join the galaxy? *</label>
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="attending" value="Yes" checked class="peer sr-only" onchange="toggleGuestCountField(true)">
+                                <div class="py-3 px-3 rounded-2xl border border-army-lilac/35 bg-army-void/70 text-center text-xs font-bold text-army-lilac peer-checked:bg-army-borahae peer-checked:text-white peer-checked:border-white/50 transition">
+                                    Yes, I'll be there! 💜
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="attending" value="No" class="peer sr-only" onchange="toggleGuestCountField(false)">
+                                <div class="py-3 px-3 rounded-2xl border border-army-lilac/35 bg-army-void/70 text-center text-xs font-bold text-army-lilac peer-checked:bg-army-pinkGlow peer-checked:text-white peer-checked:border-white/50 transition">
+                                    Sending love from afar 🌙
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Number of Guests -->
+                    <div id="guest-count-wrapper">
+                        <label for="guest-count" class="block text-xs font-bold uppercase tracking-wider text-army-lilac mb-1.5">Party Size</label>
+                        <select id="guest-count" class="w-full px-4 py-3 rounded-2xl bg-army-void/80 border border-army-lilac/35 text-white focus:outline-none focus:ring-2 focus:ring-army-borahae text-sm">
+                            <option value="1">1 Guest (Solo Stan)</option>
+                            <option value="2" selected>2 Guests (Duo)</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="7">7 Guests (OT7 Squad)</option>
+                        </select>
+                    </div>
+
+                    <!-- Song Request / Favorite BTS Track -->
+                    <div>
+                        <label for="song-request" class="block text-xs font-bold uppercase tracking-wider text-army-lilac mb-1.5">Song Request / Favorite BTS Track 🎵</label>
+                        <input type="text" id="song-request" placeholder="e.g., Mikrokosmos, Dynamite, Spring Day..."
+                               class="w-full px-4 py-3 rounded-2xl bg-army-void/80 border border-army-lilac/35 text-white placeholder-army-lilac/40 focus:outline-none focus:ring-2 focus:ring-army-borahae text-sm">
+                    </div>
+
+                    <!-- Birthday Wish -->
+                    <div>
+                        <label for="guest-wish" class="block text-xs font-bold uppercase tracking-wider text-army-lilac mb-1.5">Birthday Message for <span class="display-celebrant-name">Minji</span></label>
+                        <textarea id="guest-wish" rows="3" placeholder="Write a sweet Borahae birthday wish..."
+                                  class="w-full px-4 py-3 rounded-2xl bg-army-void/80 border border-army-lilac/35 text-white placeholder-army-lilac/40 focus:outline-none focus:ring-2 focus:ring-army-borahae text-sm"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 rounded-2xl holo-gradient text-white font-bold text-sm shadow-lg hover:opacity-95 transition active:scale-98 flex items-center justify-center gap-2 border border-white/30">
+                        <span>Submit RSVP & Queue Song</span>
+                        <span>💜</span>
+                    </button>
+                </form>
+
+                <!-- Live ARMY Guestbook & Song Queue List -->
+                <div class="cosmic-card rounded-3xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h4 class="font-display text-lg sm:text-xl font-bold text-white">ARMY Guestbook & Queue</h4>
+                            <p class="text-[11px] text-army-lilac/75">Live RSVPs & requested party tracks</p>
+                        </div>
+                        <span id="rsvp-total-badge" class="px-3 py-1 rounded-full bg-army-borahae/40 border border-army-lilac/40 text-army-goldStar text-xs font-bold">
+                            0 Attending
+                        </span>
+                    </div>
+
+                    <div id="guestbook-list" class="space-y-3 max-h-80 overflow-y-auto pr-1">
+                        <!-- Dynamically populated via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="text-center px-6 pt-4 pb-6 text-xs text-army-lilac/70">
+                <p class="font-serif italic text-base text-army-lilac mb-1">We shine brightest together • Borahae 💜</p>
+                <p>Magic Shop Digital Invitation</p>
+            </footer>
+        </div>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- 6. HOST CUSTOMIZER MODAL & STANDALONE HTML DOWNLOADER                 -->
+    <!-- ===================================================================== -->
+    <div id="edit-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+        <div class="bg-army-midnight w-full max-w-md rounded-3xl p-6 border border-army-lilac/50 shadow-2xl max-h-[90vh] overflow-y-auto text-white">
+            <div class="flex items-center justify-between mb-4 border-b border-army-lilac/25 pb-3">
+                <div>
+                    <h3 class="font-display text-xl font-bold holo-text">✨ Customize Invitation</h3>
+                    <p class="text-[11px] text-army-lilac/75">Edit details & export your ready-to-host HTML file</p>
+                </div>
+                <button onclick="closeEditModal()" class="w-8 h-8 rounded-full bg-army-deep text-army-lilac flex items-center justify-center font-bold hover:bg-army-borahae hover:text-white transition">✕</button>
+            </div>
+
+            <form id="edit-details-form" onsubmit="saveInvitationDetails(event)" class="space-y-3.5 text-sm">
+                <!-- Photo Upload via FileReader -->
+                <div class="p-3.5 rounded-2xl bg-army-void/80 border border-army-lilac/30">
+                    <label class="block text-xs font-bold text-army-goldStar uppercase mb-1.5">📸 Upload Birthday Photo</label>
+                    <input type="file" id="edit-photo-upload" accept="image/*" onchange="handlePhotoUpload(event)"
+                           class="w-full text-xs text-army-lilac file:mr-3 file:py-2 file:px-3.5 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-army-borahae file:text-white hover:file:bg-army-royal cursor-pointer">
+                    <p class="text-[10px] text-army-lilac/65 mt-1">Photo updates immediately and is embedded when you download your HTML!</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Celebrant's Name</label>
+                        <input type="text" id="edit-celebrant-name" required class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Milestone / Age</label>
+                        <input type="text" id="edit-milestone" required placeholder="e.g., Turning 21 or 1st Birthday" class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Welcome Quote</label>
+                    <textarea id="edit-welcome-quote" rows="2" required class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white"></textarea>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Party Date</label>
+                        <input type="text" id="edit-date" required class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Party Time</label>
+                        <input type="text" id="edit-time" required class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Countdown Target Date & Time</label>
+                    <input type="datetime-local" id="edit-countdown-target" class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Venue Name</label>
+                    <input type="text" id="edit-venue-name" required class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Venue Address</label>
+                    <input type="text" id="edit-venue-address" required class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-army-lilac uppercase mb-1">Gift / Bias Note</label>
+                    <textarea id="edit-gift-note" rows="2" class="w-full px-3.5 py-2.5 rounded-xl bg-army-void/90 border border-army-lilac/35 text-white"></textarea>
+                </div>
+
+                <!-- Save & Download Buttons -->
+                <div class="space-y-2.5 pt-2">
+                    <div class="flex items-center gap-2.5">
+                        <button type="button" onclick="closeEditModal()" class="flex-1 py-2.5 rounded-xl bg-army-deep text-army-lilac font-semibold text-xs border border-army-lilac/30">Cancel</button>
+                        <button type="submit" class="flex-1 py-2.5 rounded-xl bg-army-borahae hover:bg-army-royal text-white font-bold text-xs shadow-md">Apply Changes ✨</button>
+                    </div>
+
+                    <button type="button" onclick="downloadCustomHtml()" class="w-full py-3 rounded-xl holo-gradient text-white font-bold text-xs shadow-lg border border-white/30 flex items-center justify-center gap-2 hover:opacity-95 transition">
+                        <span>⬇️ Download Updated HTML (bts-invitation.html)</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- INTERACTIVE LOGIC, GALAXY PARTICLE CANVAS, AUDIO & EXPORT ENGINE      -->
+    <!-- ===================================================================== -->
+    <script id="invitation-state-script">
+        // Default configuration (gets updated automatically inside downloaded HTML exports)
+        window.INITIAL_INVITE_DATA = {
+            celebrantName: "Minji",
+            milestone: "Turning 21",
+            welcomeQuote: '"In a galaxy of stars, let\'s shine together — I Purple You 💜"',
+            date: "Saturday, June 13, 2026",
+            time: "6:00 PM – 10:00 PM",
+            countdownTarget: "2026-12-30T18:00",
+            venueName: "Euphoria Rooftop Lounge",
+            venueAddress: "613 Mikrokosmos Ave, Seoul District",
+            giftNote: "Celebrating together is the best present! If you'd like to bring a little something, purple accessories, vinyls, or handwritten letters are always cherished.",
+            photoDataUrl: "https://placehold.co/400x400/24124D/E9D5FF?text=Borahae+Star+%F0%9F%92%9C"
+        };
+    </script>
+
+    <script>
+        // ---------------------------------------------------------------------
+        // 1. STATE INITIALIZATION & LOCALSTORAGE PERSISTENCE
+        // ---------------------------------------------------------------------
+        const STORAGE_KEY_DETAILS = "borahae_invite_details_v1";
+        const STORAGE_KEY_RSVPS = "borahae_invite_rsvps_v1";
+
+        let invitationData = { ...window.INITIAL_INVITE_DATA };
+
+        // Load saved host edits if present in localStorage
+        try {
+            const savedDetails = localStorage.getItem(STORAGE_KEY_DETAILS);
+            if (savedDetails) {
+                invitationData = { ...invitationData, ...JSON.parse(savedDetails) };
+            }
+        } catch (e) {
+            console.warn("Could not read saved details from localStorage:", e);
+        }
+
+        // Default sample ARMY Guestbook entries
+        const defaultRsvps = [
+            {
+                id: 101,
+                name: "Jiminie_Pabo & TaeTae",
+                attending: "Yes",
+                guests: 2,
+                song: "Mikrokosmos",
+                wish: "Happy birthday!! You shine brighter than a whole galaxy of stars. Borahae! 💜✨"
+            },
+            {
+                id: 102,
+                name: "SugaCube_93",
+                attending: "Yes",
+                guests: 1,
+                song: "00:00 (Zero O'Clock)",
+                wish: "Can't wait for the Random Play Dance and purple mocktails!"
+            }
+        ];
+
+        let rsvpEntries = [...defaultRsvps];
+        try {
+            const savedRsvps = localStorage.getItem(STORAGE_KEY_RSVPS);
+            if (savedRsvps) {
+                rsvpEntries = JSON.parse(savedRsvps);
+            }
+        } catch (e) {
+            console.warn("Could not read saved RSVPs from localStorage:", e);
+        }
+
+        // ---------------------------------------------------------------------
+        // 2. TOAST NOTIFICATION BANNER (Replaces browser alert)
+        // ---------------------------------------------------------------------
+        let toastTimeout;
+        function showToast(message, icon = "💜") {
+            const banner = document.getElementById("toast-banner");
+            document.getElementById("toast-message").textContent = message;
+            document.getElementById("toast-icon").textContent = icon;
+
+            banner.classList.remove("-translate-y-24", "opacity-0");
+            banner.classList.add("translate-y-0", "opacity-100");
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                banner.classList.remove("translate-y-0", "opacity-100");
+                banner.classList.add("-translate-y-24", "opacity-0");
+            }, 3200);
+        }
+
+        // ---------------------------------------------------------------------
+        // 3. DREAMY SYNTHESIZED MUSIC-BOX CHIMES (Tone.js - Self-contained)
+        // ---------------------------------------------------------------------
+        let isAudioPlaying = false;
+        let cosmicLoop = null;
+        let cosmicSynth = null;
+
+        async function initCosmicAudio() {
+            if (!cosmicSynth) {
+                await Tone.start();
+                const reverb = new Tone.Reverb({ decay: 4.5, wet: 0.55 }).toDestination();
+                cosmicSynth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: "triangle" },
+                    envelope: { attack: 0.04, decay: 0.9, sustain: 0.15, release: 2.0 },
+                    volume: -14
+                }).connect(reverb);
+
+                // Dreamy starry music-box melody notes
+                const melody = ["E5", "B4", "G#5", "F#5", "E5", "B4", "C#5", "B4"];
+                let step = 0;
+                cosmicLoop = new Tone.Loop((time) => {
+                    cosmicSynth.triggerAttackRelease(melody[step % melody.length], "8n", time);
+                    step++;
+                }, "2n");
+            }
+        }
+
+        async function toggleCosmicAudio() {
+            try {
+                await initCosmicAudio();
+                const iconEl = document.getElementById("music-icon");
+                const labelEl = document.getElementById("music-label");
+
+                if (!isAudioPlaying) {
+                    Tone.Transport.start();
+                    cosmicLoop.start(0);
+                    isAudioPlaying = true;
+                    iconEl.textContent = "🎶";
+                    if (labelEl) labelEl.textContent = "Synth On";
+                    showToast("Dreamy Magic Shop chimes playing", "🎵");
+                } else {
+                    cosmicLoop.stop();
+                    Tone.Transport.stop();
+                    isAudioPlaying = false;
+                    iconEl.textContent = "🔇";
+                    if (labelEl) labelEl.textContent = "Synth Off";
+                }
+            } catch (err) {
+                console.error("Audio error:", err);
+            }
+        }
+
+        async function playUnlockSparkle() {
+            try {
+                await initCosmicAudio();
+                const now = Tone.now();
+                cosmicSynth.triggerAttackRelease("E5", "8n", now);
+                cosmicSynth.triggerAttackRelease("G#5", "8n", now + 0.1);
+                cosmicSynth.triggerAttackRelease("B5", "8n", now + 0.2);
+                cosmicSynth.triggerAttackRelease("E6", "4n", now + 0.3);
+            } catch (e) {
+                // Ignore if blocked prior to interaction
+            }
+        }
+
+        // ---------------------------------------------------------------------
+        // 4. VIP TICKET PORTAL UNLOCK
+        // ---------------------------------------------------------------------
+        function unlockInvitation() {
+            const gate = document.getElementById("welcome-gate");
+            gate.classList.add("opened");
+            playUnlockSparkle();
+            burstPurpleHearts();
+        }
+
+        // ---------------------------------------------------------------------
+        // 5. LIVE COUNTDOWN TIMER
+        // ---------------------------------------------------------------------
+        let countdownInterval = null;
+        function startCountdown() {
+            if (countdownInterval) clearInterval(countdownInterval);
+
+            function updateTimer() {
+                const targetTime = new Date(invitationData.countdownTarget).getTime();
+                const now = Date.now();
+                const diff = targetTime - now;
+
+                if (isNaN(targetTime) || diff <= 0) {
+                    document.getElementById("cd-days").textContent = "00";
+                    document.getElementById("cd-hours").textContent = "00";
+                    document.getElementById("cd-mins").textContent = "00";
+                    document.getElementById("cd-secs").textContent = "00";
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const mins = Math.floor((diff / 1000 / 60) % 60);
+                const secs = Math.floor((diff / 1000) % 60);
+
+                document.getElementById("cd-days").textContent = String(days).padStart(2, "0");
+                document.getElementById("cd-hours").textContent = String(hours).padStart(2, "0");
+                document.getElementById("cd-mins").textContent = String(mins).padStart(2, "0");
+                document.getElementById("cd-secs").textContent = String(secs).padStart(2, "0");
+            }
+
+            updateTimer();
+            countdownInterval = setInterval(updateTimer, 1000);
+        }
+
+        // ---------------------------------------------------------------------
+        // 6. RENDER INVITATION DETAILS & HOST CUSTOMIZER MODAL
+        // ---------------------------------------------------------------------
+        function renderInvitationDetails() {
+            document.querySelectorAll(".display-celebrant-name").forEach(el => {
+                el.textContent = invitationData.celebrantName;
+            });
+            document.querySelectorAll(".display-milestone").forEach(el => {
+                el.textContent = invitationData.milestone;
+            });
+            document.getElementById("display-welcome-quote").textContent = invitationData.welcomeQuote;
+            document.getElementById("display-date").textContent = invitationData.date;
+            document.getElementById("display-time").textContent = invitationData.time;
+            document.getElementById("display-venue-name").textContent = invitationData.venueName;
+            document.getElementById("display-venue-address").textContent = invitationData.venueAddress;
+            document.getElementById("display-gift-note").textContent = invitationData.giftNote;
+
+            // Update photo
+            document.getElementById("celebrant-photo-img").src = invitationData.photoDataUrl;
+
+            // Update Google Maps URL
+            const encodedAddress = encodeURIComponent(`${invitationData.venueName}, ${invitationData.venueAddress}`);
+            document.getElementById("maps-link-btn").href = `https://maps.google.com/?q=${encodedAddress}`;
+
+            startCountdown();
+        }
+
+        function openEditModal() {
+            document.getElementById("edit-celebrant-name").value = invitationData.celebrantName;
+            document.getElementById("edit-milestone").value = invitationData.milestone;
+            document.getElementById("edit-welcome-quote").value = invitationData.welcomeQuote;
+            document.getElementById("edit-date").value = invitationData.date;
+            document.getElementById("edit-time").value = invitationData.time;
+            document.getElementById("edit-countdown-target").value = invitationData.countdownTarget;
+            document.getElementById("edit-venue-name").value = invitationData.venueName;
+            document.getElementById("edit-venue-address").value = invitationData.venueAddress;
+            document.getElementById("edit-gift-note").value = invitationData.giftNote;
+
+            const modal = document.getElementById("edit-modal");
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+        }
+
+        function closeEditModal() {
+            const modal = document.getElementById("edit-modal");
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+        }
+
+        // Photo Upload via FileReader
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                invitationData.photoDataUrl = e.target.result;
+                document.getElementById("celebrant-photo-img").src = invitationData.photoDataUrl;
+                try {
+                    localStorage.setItem(STORAGE_KEY_DETAILS, JSON.stringify(invitationData));
+                } catch (err) {
+                    console.warn("Image too large for localStorage, kept in session & ready for HTML export.");
+                }
+                showToast("Portrait updated! Ready to preview or download.", "📸");
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function saveInvitationDetails(event) {
+            event.preventDefault();
+            invitationData.celebrantName = document.getElementById("edit-celebrant-name").value.trim();
+            invitationData.milestone = document.getElementById("edit-milestone").value.trim();
+            invitationData.welcomeQuote = document.getElementById("edit-welcome-quote").value.trim();
+            invitationData.date = document.getElementById("edit-date").value.trim();
+            invitationData.time = document.getElementById("edit-time").value.trim();
+            invitationData.countdownTarget = document.getElementById("edit-countdown-target").value || invitationData.countdownTarget;
+            invitationData.venueName = document.getElementById("edit-venue-name").value.trim();
+            invitationData.venueAddress = document.getElementById("edit-venue-address").value.trim();
+            invitationData.giftNote = document.getElementById("edit-gift-note").value.trim();
+
+            try {
+                localStorage.setItem(STORAGE_KEY_DETAILS, JSON.stringify(invitationData));
+            } catch (err) {
+                console.warn("Could not persist details to localStorage:", err);
+            }
+
+            renderInvitationDetails();
+            closeEditModal();
+            showToast("Borahae invitation updated!", "💜");
+        }
+
+        // ---------------------------------------------------------------------
+        // 7. STANDALONE HTML EXPORT (Bakes custom edits into downloadable file)
+        // ---------------------------------------------------------------------
+        function downloadCustomHtml() {
+            // Sync current form inputs before exporting
+            invitationData.celebrantName = document.getElementById("edit-celebrant-name").value.trim() || invitationData.celebrantName;
+            invitationData.milestone = document.getElementById("edit-milestone").value.trim() || invitationData.milestone;
+            invitationData.welcomeQuote = document.getElementById("edit-welcome-quote").value.trim() || invitationData.welcomeQuote;
+            invitationData.date = document.getElementById("edit-date").value.trim() || invitationData.date;
+            invitationData.time = document.getElementById("edit-time").value.trim() || invitationData.time;
+            invitationData.countdownTarget = document.getElementById("edit-countdown-target").value || invitationData.countdownTarget;
+            invitationData.venueName = document.getElementById("edit-venue-name").value.trim() || invitationData.venueName;
+            invitationData.venueAddress = document.getElementById("edit-venue-address").value.trim() || invitationData.venueAddress;
+            invitationData.giftNote = document.getElementById("edit-gift-note").value.trim() || invitationData.giftNote;
+
+            renderInvitationDetails();
+
+            // Clone document and update the embedded INITIAL_INVITE_DATA script block
+            const clonedDoc = document.documentElement.cloneNode(true);
+            // Reset gate and modal states in the exported copy so guests see the cover gate first
+            const exportedGate = clonedDoc.querySelector("#welcome-gate");
+            if (exportedGate) exportedGate.classList.remove("opened");
+            const exportedModal = clonedDoc.querySelector("#edit-modal");
+            if (exportedModal) {
+                exportedModal.classList.add("hidden");
+                exportedModal.classList.remove("flex");
+            }
+
+            const stateScript = clonedDoc.querySelector("#invitation-state-script");
+            if (stateScript) {
+                stateScript.textContent = `\n        window.INITIAL_INVITE_DATA = ${JSON.stringify(invitationData, null, 4)};\n    `;
+            }
+
+            const finalHtml = "<!DOCTYPE html>\n" + clonedDoc.outerHTML;
+            const blob = new Blob([finalHtml], { type: "text/html;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "bts-invitation.html";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showToast("Downloaded bts-invitation.html! Ready to host.", "⬇️");
+        }
+
+        // ---------------------------------------------------------------------
+        // 8. COPY VENUE ADDRESS (execCommand fallback for iFrame safety)
+        // ---------------------------------------------------------------------
+        function copyVenueAddress() {
+            const fullAddress = `${invitationData.venueName}, ${invitationData.venueAddress}`;
+            const tempInput = document.createElement("textarea");
+            tempInput.value = fullAddress;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand("copy");
+                showToast("Venue address copied to clipboard!", "📍");
+            } catch (err) {
+                showToast("Could not copy address", "⚠️");
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // ---------------------------------------------------------------------
+        // 9. WORKING RSVP FORM & LIVE ARMY GUESTBOOK / SONG QUEUE
+        // ---------------------------------------------------------------------
+        function toggleGuestCountField(isAttending) {
+            const wrapper = document.getElementById("guest-count-wrapper");
+            wrapper.style.display = isAttending ? "block" : "none";
+        }
+
+        function renderGuestbook() {
+            const listEl = document.getElementById("guestbook-list");
+            const badgeEl = document.getElementById("rsvp-total-badge");
+
+            const totalAttending = rsvpEntries
+                .filter(entry => entry.attending === "Yes")
+                .reduce((sum, entry) => sum + Number(entry.guests), 0);
+
+            badgeEl.textContent = `${totalAttending} ARMY Attending`;
+
+            if (rsvpEntries.length === 0) {
+                listEl.innerHTML = `<p class="text-xs text-center text-army-lilac/65 py-4">No RSVPs yet. Be the first ARMY to sign the guestbook!</p>`;
+                return;
+            }
+
+            listEl.innerHTML = rsvpEntries.map(entry => {
+                const isYes = entry.attending === "Yes";
+                const statusBadge = isYes
+                    ? `<span class="px-2.5 py-0.5 rounded-full bg-army-borahae/40 border border-army-lilac/40 text-army-goldStar text-[10px] font-bold">Attending (${entry.guests})</span>`
+                    : `<span class="px-2.5 py-0.5 rounded-full bg-army-pinkGlow/25 border border-army-pinkGlow/40 text-army-pinkGlow text-[10px] font-bold">From Afar 🌙</span>`;
+
+                const songHtml = entry.song
+                    ? `<div class="inline-flex items-center gap-1.5 mt-2 px-2.5 py-1 rounded-xl bg-army-deep/90 border border-army-lilac/25 text-[11px] text-army-lilac">
+                         <span>🎵</span>
+                         <span>Track Request: <strong class="text-white">${escapeHtml(entry.song)}</strong></span>
+                       </div>`
+                    : "";
+
+                const wishHtml = entry.wish
+                    ? `<p class="font-serif italic text-sm text-army-mist/90 mt-1.5">"${escapeHtml(entry.wish)}"</p>`
+                    : "";
+
+                return `
+                    <div class="p-3.5 rounded-2xl bg-army-void/75 border border-army-lilac/25 shadow-sm">
+                        <div class="flex items-center justify-between gap-2">
+                            <p class="font-bold text-xs text-white">${escapeHtml(entry.name)}</p>
+                            ${statusBadge}
+                        </div>
+                        ${wishHtml}
+                        ${songHtml}
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function handleRsvpSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById("guest-name").value.trim();
+            const attending = document.querySelector('input[name="attending"]:checked').value;
+            const guests = attending === "Yes" ? parseInt(document.getElementById("guest-count").value, 10) : 0;
+            const song = document.getElementById("song-request").value.trim();
+            const wish = document.getElementById("guest-wish").value.trim();
+
+            if (!name) return;
+
+            rsvpEntries.unshift({
+                id: Date.now(),
+                name,
+                attending,
+                guests,
+                song,
+                wish
+            });
+
+            try {
+                localStorage.setItem(STORAGE_KEY_RSVPS, JSON.stringify(rsvpEntries));
+            } catch (err) {
+                console.warn("Could not save RSVP to localStorage:", err);
+            }
+
+            renderGuestbook();
+            document.getElementById("rsvp-form").reset();
+            toggleGuestCountField(true);
+            burstPurpleHearts();
+            showToast(`Borahae, ${name}! Your RSVP is locked in.`, "💜");
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement("div");
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        // ---------------------------------------------------------------------
+        // 10. COSMIC STARDUST & PURPLE HEART CONFETTI CANVAS
+        // ---------------------------------------------------------------------
+        const canvas = document.getElementById("galaxy-canvas");
+        const ctx = canvas.getContext("2d");
+        let starParticles = [];
+        let heartParticles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class StarDust {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.radius = Math.random() * 2 + 0.6;
+                this.vx = (Math.random() - 0.5) * 0.35;
+                this.vy = -Math.random() * 0.35 - 0.1;
+                this.alpha = Math.random();
+                this.alphaDelta = (Math.random() * 0.02 + 0.008) * (Math.random() > 0.5 ? 1 : -1);
+                const palette = ["196, 181, 253", "244, 114, 182", "253, 230, 138", "139, 92, 246"];
+                this.color = palette[Math.floor(Math.random() * palette.length)];
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha += this.alphaDelta;
+                if (this.alpha >= 1 || this.alpha <= 0.1) this.alphaDelta *= -1;
+                if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) this.reset();
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${this.color}, ${Math.max(0, Math.min(1, this.alpha))})`;
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = `rgba(${this.color}, 0.85)`;
+                ctx.fill();
+            }
+        }
+
+        class PurpleHeartBurst {
+            constructor() {
+                this.x = canvas.width / 2 + (Math.random() - 0.5) * 140;
+                this.y = canvas.height / 2 + (Math.random() - 0.5) * 100;
+                this.vx = (Math.random() - 0.5) * 5.5;
+                this.vy = -Math.random() * 4.5 - 1.5;
+                this.gravity = 0.08;
+                this.size = Math.random() * 14 + 12;
+                this.alpha = 1;
+                this.emoji = Math.random() > 0.25 ? "💜" : "✨";
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += this.gravity;
+                this.alpha -= 0.014;
+            }
+            draw() {
+                if (this.alpha <= 0) return;
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, this.alpha);
+                ctx.font = `${this.size}px sans-serif`;
+                ctx.fillText(this.emoji, this.x, this.y);
+                ctx.restore();
+            }
+        }
+
+        function initGalaxyCanvas() {
+            resizeCanvas();
+            starParticles = [];
+            for (let i = 0; i < 48; i++) {
+                starParticles.push(new StarDust());
+            }
+        }
+
+        function burstPurpleHearts() {
+            for (let i = 0; i < 26; i++) {
+                heartParticles.push(new PurpleHeartBurst());
+            }
+        }
+
+        function animateGalaxy() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            starParticles.forEach(star => {
+                star.update();
+                star.draw();
+            });
+
+            heartParticles = heartParticles.filter(h => h.alpha > 0);
+            heartParticles.forEach(heart => {
+                heart.update();
+                heart.draw();
+            });
+
+            requestAnimationFrame(animateGalaxy);
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+
+        window.onload = function () {
+            renderInvitationDetails();
+            renderGuestbook();
+            initGalaxyCanvas();
+            animateGalaxy();
+        };
+    </script>
+</body>
+</html>
